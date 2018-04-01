@@ -34,8 +34,11 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
       - ./logs/postgres:/var/log/postgresql
-    ports:
-      - '5432:5432'
+    # Uncomment the following lines if you want to connect to PostgreSQL with
+    # an external tool like PhpStorm, adminer, etc.
+    # The host to use would be "postgres".
+    # ports:
+    #   - '5432:5432'
 
   nginx:
     image: nginx:${NGINX_TAG:?Missing NGINX_TAG}
