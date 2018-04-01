@@ -57,7 +57,5 @@ services:
     depends_on:
       - phpfpm
       - postgres
-    ports:
-      - '${NGINX_PORT:-8080}:80'
     environment:
       - VIRTUAL_HOST=${SITE_URL:?Missing SITE_URL}
