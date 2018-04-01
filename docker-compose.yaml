@@ -8,6 +8,11 @@ volumes:
   # Creates a Docker volume to persist data.
   postgres:
 
+networks:
+  default:
+    external:
+      name: umanit-php-stack-network
+
 services:
   phpfpm:
     build:
@@ -53,4 +58,6 @@ services:
       - phpfpm
       - postgres
     ports:
-      - '${NGINX_PORT:-80}:80'
+      - '${NGINX_PORT:-8080}:80'
+    environment:
+      - VIRTUAL_HOST=${SITE_URL:?Missing SITE_URL}
