@@ -17,6 +17,7 @@ In order to use this stack, you must:
 To launch the stack, simply type `docker-compose up -d` in your terminal.
 
 There are several configuration available in the `.env` file:
+
 |Name|Description|Required?|
 |--|--|--|
 |COMPOSE_PROJECT_NAME|Name of your project. Used to distinct multiple projects from each others.  |✔|
