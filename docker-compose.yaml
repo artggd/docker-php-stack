@@ -2,7 +2,7 @@
 ## Configuration file of docker-composer.                                  ##
 ## You must create a .env file, based on .env.dist to configure services.  ##
 #############################################################################
-version: '3'
+version: '3.1'
 
 volumes:
   # Creates a Docker volume to persist data.
@@ -12,6 +12,10 @@ networks:
   default:
     external:
       name: umanit-php-stack-network
+
+secrets:
+  host_ssh_key:
+    file: ~/.ssh/id_rsa
 
 services:
   php:
@@ -27,6 +31,8 @@ services:
       - ./logs/php-fpm:/var/log/php-fpm
       - ./confs/php-fpm/custom-php-fpm.conf:/usr/local/etc/php-fpm.d/custom-php-fpm.conf
       - ./confs/php-fpm/custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini
+    secrets:
+      - host_ssh_key
 
   postgres:
     image: postgres:${POSTGRES_TAG:?Missing POSTGRES_TAG}
