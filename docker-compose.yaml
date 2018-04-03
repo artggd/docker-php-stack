@@ -14,7 +14,7 @@ networks:
       name: umanit-php-stack-network
 
 services:
-  phpfpm:
+  php:
     build:
       context: confs/php-fpm
       args:
@@ -25,8 +25,8 @@ services:
       # Use the next line instead of the previous one if you are using MacOS.
       # - ./www:/var/www/html:cached
       - ./logs/php-fpm:/var/log/php-fpm
-      - ./confs/php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
-      - ./confs/php-fpm/php.ini:/usr/local/etc/php/php.ini
+      - ./confs/php-fpm/custom-php-fpm.conf:/usr/local/etc/php-fpm.d/custom-php-fpm.conf
+      - ./confs/php-fpm/custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini
 
   postgres:
     image: postgres:${POSTGRES_TAG:?Missing POSTGRES_TAG}
@@ -55,7 +55,7 @@ services:
       - ./confs/nginx/vhost.conf:/etc/nginx/conf.d/default.conf
       - ./logs/nginx:/var/log/nginx
     depends_on:
-      - phpfpm
+      - php
       - postgres
     environment:
       - VIRTUAL_HOST=${SITE_URL:?Missing SITE_URL}
