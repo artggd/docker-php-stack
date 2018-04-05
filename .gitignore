@@ -1,0 +1,6 @@
+.env
+www
+logs
+.idea
+
+!.gitkeep
