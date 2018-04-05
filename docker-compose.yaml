@@ -33,6 +33,8 @@ services:
       - ./confs/php-fpm/custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini
     secrets:
       - host_ssh_key
+    depends_on:
+      - mailhog
 
   postgres:
     image: postgres:${POSTGRES_TAG:?Missing POSTGRES_TAG}
@@ -65,3 +67,8 @@ services:
       - postgres
     environment:
       - VIRTUAL_HOST=${SITE_URL:?Missing SITE_URL}
+
+  mailhog:
+    image: mailhog/mailhog
+    environment:
+      - VIRTUAL_HOST=mailhog.${SITE_URL:?Missing SITE_URL}
