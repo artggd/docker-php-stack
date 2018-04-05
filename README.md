@@ -1,7 +1,7 @@
 # UmanIT PHP Stack with Docker
 
 ## Presentation
-This repository is used to start a new web project. It will launch a Nginx server with PHP-FPM and PostgreSQL.
+This repository is used to start a new web project. It will launch a Nginx server with PHP-FPM, PostgreSQL and MailHog.
 
 ## Requirements
 In order to use this stack, you must:
