@@ -70,5 +70,7 @@ services:
 
   mailhog:
     image: mailhog/mailhog
-    environment:
-      - VIRTUAL_HOST=mailhog.${SITE_URL:?Missing SITE_URL}
+    # Uncomment the following lines if you want to access to mailhog in your
+    # browser with http://yourhost.tld:8025/
+    # ports:
+    #   - '8025:8025'
