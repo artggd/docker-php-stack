@@ -19,10 +19,7 @@ secrets:
 
 services:
   php:
-    build:
-      context: confs/php-fpm
-      args:
-        phptag: ${PHP_TAG:?Missing PHP_TAG}
+    image: djlechuck/php:${PHP_TAG:?Missing PHP_TAG}
     restart: always
     volumes:
       - ./www:/var/www/html
